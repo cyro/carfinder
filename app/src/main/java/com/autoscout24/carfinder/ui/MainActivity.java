@@ -1,7 +1,9 @@
-package com.autoscout24.carfinder;
+package com.autoscout24.carfinder.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.autoscout24.carfinder.R;
 
 public class MainActivity extends AppCompatActivity {
 
