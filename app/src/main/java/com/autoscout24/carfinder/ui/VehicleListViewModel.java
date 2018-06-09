@@ -4,7 +4,7 @@ package com.autoscout24.carfinder.ui;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.autoscout24.carfinder.arch.data.VehicleEntry;
+import com.autoscout24.carfinder.arch.data.database.VehicleEntry;
 
 public class VehicleListViewModel extends ViewModel {
 

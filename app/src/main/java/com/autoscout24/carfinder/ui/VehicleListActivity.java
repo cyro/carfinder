@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.autoscout24.carfinder.R;
-import com.autoscout24.carfinder.arch.data.VehicleEntry;
+import com.autoscout24.carfinder.arch.core.InjectorUtils;
+import com.autoscout24.carfinder.arch.data.database.VehicleEntry;
 
 public class VehicleListActivity extends AppCompatActivity {
 
@@ -23,6 +24,8 @@ public class VehicleListActivity extends AppCompatActivity {
             //Any changes update to UI
             if(vehicleEntry != null) bindVehicleListToUI(vehicleEntry);
         });
+
+        InjectorUtils.provideRepository(this).initializeData();
     }
 
     private void bindVehicleListToUI(VehicleEntry vehicleEntry) {

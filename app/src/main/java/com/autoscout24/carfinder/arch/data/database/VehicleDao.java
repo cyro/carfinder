@@ -1,4 +1,4 @@
-package com.autoscout24.carfinder.arch.data;
+package com.autoscout24.carfinder.arch.data.database;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
