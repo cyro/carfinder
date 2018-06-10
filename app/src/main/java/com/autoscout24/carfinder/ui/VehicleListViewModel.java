@@ -8,18 +8,20 @@ import android.arch.lifecycle.ViewModel;
 import com.autoscout24.carfinder.arch.data.VehicleRepository;
 import com.autoscout24.carfinder.arch.data.database.VehicleEntry;
 
+import java.util.List;
+
 public class VehicleListViewModel extends ViewModel {
 
-    private final LiveData<VehicleEntry> mVehicle;
+    private final LiveData<List<VehicleEntry>> mVehicles;
     private final VehicleRepository mRepository;
 
     public VehicleListViewModel(VehicleRepository repository) {
         mRepository = repository;
-        mVehicle = mRepository.getAllVehicles();
+        mVehicles = mRepository.getAllVehicles();
     }
 
-    public LiveData<VehicleEntry> getVehicle() {
-        return mVehicle;
+    public LiveData<List<VehicleEntry>> getVehicles() {
+        return mVehicles;
     }
     
 }

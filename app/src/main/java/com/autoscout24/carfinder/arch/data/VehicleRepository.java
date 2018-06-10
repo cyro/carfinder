@@ -8,6 +8,8 @@ import com.autoscout24.carfinder.arch.data.database.VehicleDao;
 import com.autoscout24.carfinder.arch.data.database.VehicleEntry;
 import com.autoscout24.carfinder.arch.data.network.VehicleNetworkDataSource;
 
+import java.util.List;
+
 public class VehicleRepository {
 
     private static final String LOG_TAG = VehicleRepository.class.getSimpleName();
@@ -36,6 +38,14 @@ public class VehicleRepository {
                 Log.d(LOG_TAG,"New vehicles inserted");
             });
         });
+
+        //Load data if db has data
+        mExecutors.diskIO().execute(() -> {
+            if(isFetchRequired()) {
+                Log.d(LOG_TAG,"Fetch is required");
+                startFetchVehicleListService();
+            }
+        });
     }
 
     public synchronized static VehicleRepository getInstance(VehicleDao vehicleDao,
@@ -62,6 +72,10 @@ public class VehicleRepository {
     //Delete Old data
 
     //Check if a fetch is needed
+    private boolean isFetchRequired() {
+        int count = mVehicleDao.countAllVehicles();
+        return (count < 0);
+    }
 
     //Start service
 
@@ -69,7 +83,7 @@ public class VehicleRepository {
         mVehicleDataSource.startFetchVehicleListService();
     }
 
-    public LiveData<VehicleEntry> getAllVehicles() {
+    public LiveData<List<VehicleEntry>> getAllVehicles() {
         //Lazy instantition
         initializeData();
         return mVehicleDao.getAllVehicles();

@@ -3,12 +3,16 @@ package com.autoscout24.carfinder.ui;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.autoscout24.carfinder.R;
 import com.autoscout24.carfinder.arch.core.InjectorUtils;
 import com.autoscout24.carfinder.arch.data.database.VehicleEntry;
 
+import java.util.List;
+
 public class VehicleListActivity extends AppCompatActivity {
+    private static final String LOG_TAG = VehicleListActivity.class.getSimpleName();
 
     private VehicleListViewModel mViewModel;
 
@@ -22,14 +26,18 @@ public class VehicleListActivity extends AppCompatActivity {
         mViewModel = ViewModelProviders.of(this, factory).get(VehicleListViewModel.class);
         
         //Create obeservation for changes in Vehicles
-        mViewModel.getVehicle().observe(this, vehicleEntry -> {
+        mViewModel.getVehicles().observe(this, vehicleEntries -> {
             //Any changes update to UI
-            if(vehicleEntry != null) bindVehicleListToUI(vehicleEntry);
+            if(vehicleEntries != null) bindVehicleListToUI(vehicleEntries);
         });
 
 
     }
 
-    private void bindVehicleListToUI(VehicleEntry vehicleEntry) {
+    private void bindVehicleListToUI(List<VehicleEntry> vehicleList) {
+        for(VehicleEntry vehicle : vehicleList) {
+            Log.d(LOG_TAG,vehicle.toString());
+        }
+
     }
 }

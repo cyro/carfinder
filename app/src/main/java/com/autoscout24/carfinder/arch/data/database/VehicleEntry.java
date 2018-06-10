@@ -2,6 +2,7 @@ package com.autoscout24.carfinder.arch.data.database;
 
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -91,6 +92,12 @@ public class VehicleEntry {
 
     public Seller getSeller() {
         return seller;
+    }
+    @Ignore
+    @Override
+    public String toString()
+    {
+        return "Vehicle [id = "+id+", model = "+model+", mileage = "+mileage+", price = "+price+", description = "+description+" , fuel = "+fuel+", firstRegistration = "+firstRegistration+", make = "+make+"]";
     }
 }
 
