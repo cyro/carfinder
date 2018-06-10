@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        card_view:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/card_margin">
+
+            <TextView
+                android:id="@+id/currencySymbolTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BAM"
+                android:textSize="@dimen/material_text_headline"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/currencyNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/currencySymbolTextView"
+                android:text="Bosnia-Herzegovina Convertible Mark"
+                android:textSize="@dimen/material_text_subhead" />
+
+            <CheckBox
+                android:id="@+id/currencyCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:checked="false"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

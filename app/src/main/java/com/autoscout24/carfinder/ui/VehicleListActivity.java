@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.autoscout24.carfinder.R;
@@ -55,9 +56,12 @@ public class VehicleListActivity extends AppCompatActivity {
     }
 
     private void bindVehicleListToUI(List<VehicleEntry> vehicleList) {
-        for(VehicleEntry vehicle : vehicleList) {
-            Log.d(LOG_TAG,vehicle.toString());
-        }
+//        for(VehicleEntry vehicle : vehicleList) {
+//            Log.d(LOG_TAG,vehicle.toString());
+//        }
+        mLoadingLayout.setVisibility(View.GONE);
+        mVehicleRecyclerView.setVisibility(View.VISIBLE);
+        mVehicleListAdaptor.setVehicleEntryList(vehicleList);
 
     }
 }
