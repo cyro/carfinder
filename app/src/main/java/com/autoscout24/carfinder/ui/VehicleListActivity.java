@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.RelativeLayout;
@@ -28,11 +29,17 @@ public class VehicleListActivity extends AppCompatActivity {
     @BindView(R.id.loadingLayout)
     RelativeLayout mLoadingLayout;
 
+    private VehicleListAdaptor mVehicleListAdaptor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        mVehicleListAdaptor = new VehicleListAdaptor();
+        mVehicleRecyclerView.setAdapter(mVehicleListAdaptor);
+        mVehicleRecyclerView.setLayoutManager( new LinearLayoutManager(this));
         
         VehicleViewModelFactory factory = InjectorUtils.provideVehicleViewModelFactory(this.getApplicationContext());
 
