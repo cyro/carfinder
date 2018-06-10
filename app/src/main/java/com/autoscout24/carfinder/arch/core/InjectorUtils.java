@@ -5,6 +5,7 @@ import android.content.Context;
 import com.autoscout24.carfinder.arch.data.VehicleRepository;
 import com.autoscout24.carfinder.arch.data.database.VehicleDatabase;
 import com.autoscout24.carfinder.arch.data.network.VehicleNetworkDataSource;
+import com.autoscout24.carfinder.ui.VehicleViewModelFactory;
 
 public class InjectorUtils {
 
@@ -20,5 +21,10 @@ public class InjectorUtils {
     public static VehicleNetworkDataSource provideNetworkDataSource(Context context) {
         AppExecutors executors = AppExecutors.getInstance();
         return VehicleNetworkDataSource.getInstance(context,executors);
+    }
+
+    public static VehicleViewModelFactory provideVehicleViewModelFactory(Context context) {
+        VehicleRepository repository = provideRepository(context);
+        return new VehicleViewModelFactory(repository);
     }
 }

@@ -1,5 +1,6 @@
 package com.autoscout24.carfinder.arch.data.database;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -11,5 +12,5 @@ public interface VehicleDao {
     void bulkInsert(VehicleEntry... vehicle);
 
     @Query("SELECT * FROM vehicles")
-    VehicleEntry getAllVehicles();
+    LiveData<VehicleEntry> getAllVehicles();
 }

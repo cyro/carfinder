@@ -52,7 +52,7 @@ public class VehicleRepository {
     }
 
     //Intialize data
-    public synchronized void initializeData() {
+    private synchronized void initializeData() {
         //Check for intialization happens once per lifetime of app
         if(mIntialised) return;
         mIntialised = true;
@@ -67,6 +67,12 @@ public class VehicleRepository {
 
     private void startFetchVehicleListService() {
         mVehicleDataSource.startFetchVehicleListService();
+    }
+
+    public LiveData<VehicleEntry> getAllVehicles() {
+        //Lazy instantition
+        initializeData();
+        return mVehicleDao.getAllVehicles();
     }
 
 }

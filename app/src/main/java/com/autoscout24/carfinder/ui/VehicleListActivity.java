@@ -16,8 +16,10 @@ public class VehicleListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        mViewModel = ViewModelProviders.of(this).get(VehicleListViewModel.class);
+
+        VehicleViewModelFactory factory = InjectorUtils.provideVehicleViewModelFactory(this.getApplicationContext());
+
+        mViewModel = ViewModelProviders.of(this, factory).get(VehicleListViewModel.class);
         
         //Create obeservation for changes in Vehicles
         mViewModel.getVehicle().observe(this, vehicleEntry -> {
@@ -25,7 +27,7 @@ public class VehicleListActivity extends AppCompatActivity {
             if(vehicleEntry != null) bindVehicleListToUI(vehicleEntry);
         });
 
-        InjectorUtils.provideRepository(this).initializeData();
+
     }
 
     private void bindVehicleListToUI(VehicleEntry vehicleEntry) {
