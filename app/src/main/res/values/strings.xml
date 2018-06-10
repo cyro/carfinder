@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Car Finder</string>
+    <string name="finding_cars_near_you">Finding cars near you...</string>
 </resources>

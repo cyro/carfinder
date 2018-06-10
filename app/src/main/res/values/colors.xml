@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/blue100</color>
+    <color name="colorPrimaryDark">@color/blue100</color>
+    <color name="colorAccent">@color/orange100</color>
+    <color name="blue100">#003468</color>
+    <color name="blue20">#f2f5f7</color>
+    <color name="blue20AF3">#f3f2f5f7</color>
+    <color name="blue30">#d4dde5</color>
+    <color name="blue30A77">#77d4dde5</color>
+    <color name="blue40">#b6c5d3</color>
+    <color name="blue50">#97adc1</color>
+    <color name="blue60">#7995b0</color>
+    <color name="blue70">#5b7c9e</color>
+    <color name="blue70AE5">#e57995b0</color>
+    <color name="blue80">#3d648c</color>
+    <color name="blue90">#1e4c7a</color>
+    <color name="blue90A55">#551e4c7a</color>
+    <color name="_scoutOrange">#ff7500</color>
+    <color name="orange100">#ff7500</color>
+    <color name="orange100Alpha60">#99ff7500</color>
+    <color name="orange110">#cf5f00</color>
+    <color name="orange20">#fff1e5</color>
+    <color name="orange30">#ffe3cc</color>
+    <color name="orange40">#ffd5b0</color>
+    <color name="orange50">#ffc899</color>
+    <color name="orange60">#ffba80</color>
+    <color name="orange70">#ffac66</color>
+    <color name="orange80">#ff9a4c</color>
+    <color name="orange90">#ff9133</color>
+    <color name="black">#000000</color>
+    <color name="black10">#f7f7f7</color>
+    <color name="black100">#333333</color>
+    <color name="black100Alpha50">#50000000</color>
+    <color name="black20">#f4f4f4</color>
+    <color name="black30">#dcdcdc</color>
+    <color name="black40">#c4c4c4</color>
+    <color name="black50">#acacac</color>
+    <color name="black60">#949494</color>
+    <color name="black70">#7c7c7c</color>
+    <color name="black80">#646464</color>
+    <color name="black90">#4c4c4c</color>
+
 </resources>
+
