@@ -1,6 +1,7 @@
 package com.autoscout24.carfinder.ui;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -102,7 +103,10 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
             }
 
         } else if (vehicleAdvertisementWrapper.isAdvertisement()) {
-
+            AdvertisementViewHolder viewHolder = (AdvertisementViewHolder) holder;
+            viewHolder.advertismentImageView.setBackgroundResource(R.drawable.animate_advertisments);
+            AnimationDrawable animationDrawable = (AnimationDrawable) viewHolder.advertismentImageView.getBackground();
+            animationDrawable.start();
         }
     }
 
@@ -164,6 +168,8 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
     }
 
     static class AdvertisementViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.advertismentImageView)
+        ImageView advertismentImageView;
 
         public AdvertisementViewHolder(View itemView) {
             super(itemView);
