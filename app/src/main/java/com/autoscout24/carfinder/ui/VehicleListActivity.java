@@ -1,11 +1,13 @@
 package com.autoscout24.carfinder.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -38,9 +40,15 @@ public class VehicleListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mVehicleListAdaptor = new VehicleListAdaptor();
+        mVehicleListAdaptor = new VehicleListAdaptor(this);
         mVehicleRecyclerView.setAdapter(mVehicleListAdaptor);
-        mVehicleRecyclerView.setLayoutManager( new LinearLayoutManager(this));
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mVehicleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }else{
+            StaggeredGridLayoutManager staggeredGridVertical=new
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+            mVehicleRecyclerView.setLayoutManager(staggeredGridVertical);
+        }
         
         VehicleViewModelFactory factory = InjectorUtils.provideVehicleViewModelFactory(this.getApplicationContext());
 
@@ -52,13 +60,9 @@ public class VehicleListActivity extends AppCompatActivity {
             if(vehicleEntries != null) bindVehicleListToUI(vehicleEntries);
         });
 
-
     }
 
     private void bindVehicleListToUI(List<VehicleEntry> vehicleList) {
-//        for(VehicleEntry vehicle : vehicleList) {
-//            Log.d(LOG_TAG,vehicle.toString());
-//        }
         mLoadingLayout.setVisibility(View.GONE);
         mVehicleRecyclerView.setVisibility(View.VISIBLE);
         mVehicleListAdaptor.setVehicleEntryList(vehicleList);

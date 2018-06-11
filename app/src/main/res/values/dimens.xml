@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="card_margin">16dp</dimen>
+    <dimen name="control_padding">12dp</dimen>
+    <dimen name="textview_detail_padding">8dp</dimen>
+    <dimen name="divider_padding">2dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
     <dimen name="material_text_button">14sp</dimen>
     <dimen name="material_text_menu">14sp</dimen>
     <dimen name="material_text_caption">12sp</dimen>

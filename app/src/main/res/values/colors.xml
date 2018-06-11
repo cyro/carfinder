@@ -3,6 +3,7 @@
     <color name="colorPrimary">@color/blue100</color>
     <color name="colorPrimaryDark">@color/blue100</color>
     <color name="colorAccent">@color/orange100</color>
+    <color name="transparent">#00000000</color>
     <color name="blue100">#003468</color>
     <color name="blue20">#f2f5f7</color>
     <color name="blue20AF3">#f3f2f5f7</color>

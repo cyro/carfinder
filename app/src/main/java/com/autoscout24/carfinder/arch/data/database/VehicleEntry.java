@@ -6,6 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 @Entity(tableName = "vehicles")
@@ -23,8 +24,7 @@ public class VehicleEntry {
     private String firstRegistration;
     private String color;
     private String description;
-    @Embedded
-    private ArrayList<Images> images;
+    private ArrayList<Images> images = new ArrayList<>();
 
     @Embedded
     private Seller seller;
@@ -93,11 +93,74 @@ public class VehicleEntry {
     public Seller getSeller() {
         return seller;
     }
+
+    public VehicleEntry() {
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setFuel(String fuel) {
+        this.fuel = fuel;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setMileage(double mileage) {
+        this.mileage = mileage;
+    }
+
+    public void setModelline(String modelline) {
+        this.modelline = modelline;
+    }
+
+    public void setFirstRegistration(String firstRegistration) {
+        this.firstRegistration = firstRegistration;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setImages(ArrayList<Images> images) {
+        this.images = images;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    //Convience string methods
     @Ignore
     @Override
-    public String toString()
-    {
+    public String toString(){
         return "Vehicle [id = "+id+", model = "+model+", mileage = "+mileage+", price = "+price+", description = "+description+" , fuel = "+fuel+", firstRegistration = "+firstRegistration+", make = "+make+"]";
     }
+
+    @Ignore
+    public String getMakeAndModel() {
+        if(getMake()!= null && getModel() != null){
+            return getMake() + " "+ getModel();
+        }else {
+            return "N/A";
+        }
+    }
+
+
 }
 

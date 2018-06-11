@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b1c09fc89f76767732fda9ba2285236b",
+    "identityHash": "53cf25e7196d625059e26b193147c256",
     "entities": [
       {
         "tableName": "vehicles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `make` TEXT, `model` TEXT, `fuel` TEXT, `price` REAL NOT NULL, `mileage` REAL NOT NULL, `modelline` TEXT, `firstRegistration` TEXT, `color` TEXT, `description` TEXT, `phone` TEXT, `type` TEXT, `city` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `make` TEXT, `model` TEXT, `fuel` TEXT, `price` REAL NOT NULL, `mileage` REAL NOT NULL, `modelline` TEXT, `firstRegistration` TEXT, `color` TEXT, `description` TEXT, `images` TEXT, `phone` TEXT, `type` TEXT, `city` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -69,6 +69,12 @@
             "notNull": false
           },
           {
+            "fieldPath": "images",
+            "columnName": "images",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
             "fieldPath": "seller.phone",
             "columnName": "phone",
             "affinity": "TEXT",
@@ -99,7 +105,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b1c09fc89f76767732fda9ba2285236b\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"53cf25e7196d625059e26b193147c256\")"
     ]
   }
 }

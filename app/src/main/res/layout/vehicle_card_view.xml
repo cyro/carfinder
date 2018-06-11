@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/transparent">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
@@ -11,36 +12,181 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
         android:elevation="3dp"
-        card_view:cardCornerRadius="4dp">
+        card_view:cardCornerRadius="6dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/card_margin">
+            android:layout_alignParentTop="true">
+
+            <RelativeLayout android:id="@+id/vehicleImagesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:orientation="horizontal">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vehicleViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                     >
+                </android.support.v4.view.ViewPager>
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    card_view:tabIndicatorHeight="4dp"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/noImagesAvailableImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/placeholder_car_detail"
+                    android:scaleType="fitCenter"
+                    android:background="@color/black70"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/currencySymbolTextView"
-                android:layout_width="wrap_content"
+                android:id="@+id/vehicleMakeModelTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BAM"
-                android:textSize="@dimen/material_text_headline"
-                android:textStyle="bold"/>
+                android:layout_below="@+id/vehicleImagesLayout"
+                android:paddingRight="@dimen/control_padding"
+                android:paddingLeft="@dimen/control_padding"
+                android:text="Porsche 911 turbo"
+                android:textSize="@dimen/material_text_title" />
 
             <TextView
-                android:id="@+id/currencyNameTextView"
-                android:layout_width="wrap_content"
+                android:id="@+id/vehiclePriceTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/currencySymbolTextView"
-                android:text="Bosnia-Herzegovina Convertible Mark"
-                android:textSize="@dimen/material_text_subhead" />
+                android:layout_below="@+id/vehicleMakeModelTextView"
+                android:paddingRight="@dimen/control_padding"
+                android:paddingLeft="@dimen/control_padding"
+                android:text="$ 23,000.-"
+                android:textSize="@dimen/material_text_subhead"
+                android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/currencyCheckBox"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/vehicleDetails"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:checked="false"/>
+                android:layout_below="@+id/vehiclePriceTextView"
+                android:orientation="horizontal"
+                android:padding="@dimen/control_padding"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/vehicleDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingRight="5dp">
+
+                    <TextView
+                        android:id="@+id/vehicleMileageTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="50000 km"
+                        android:textSize="@dimen/material_text_body1" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:background="@color/black70"
+                        android:paddingTop="@dimen/divider_padding" />
+
+                    <TextView
+                        android:id="@+id/vehicleFuelTypeTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/textview_detail_padding"
+                        android:text="Gasoline"
+                        android:textSize="@dimen/material_text_body1" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:background="@color/black70"
+                        android:paddingTop="@dimen/divider_padding" />
+
+                    <TextView
+                        android:id="@+id/vehicleColorTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/textview_detail_padding"
+                        android:text="White"
+                        android:textSize="@dimen/material_text_body1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/vehicleSeller"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp">
+
+                    <TextView
+                        android:id="@+id/vehicleSellerTypeTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Private Seller"
+                        android:textSize="@dimen/material_text_body1" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:background="@color/black70"
+                        android:paddingTop="@dimen/divider_padding" />
+
+                    <TextView
+                        android:id="@+id/vehicleSellerTellTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/textview_detail_padding"
+                        android:text="+12345678"
+                        android:textSize="@dimen/material_text_body1" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:background="@color/black70"
+                        android:paddingTop="@dimen/divider_padding" />
+
+                    <TextView
+                        android:id="@+id/vehicleSellerCityTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/textview_detail_padding"
+                        android:text="Munich"
+                        android:textSize="@dimen/material_text_body1" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_below="@+id/vehicleDetails"
+                android:background="@color/black70"
+                android:paddingTop="@dimen/divider_padding" />
+
+            <TextView
+                android:id="@+id/vehicleDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                android:padding="@dimen/control_padding"
+                android:text="Good condition, had an accident two years ago."
+                android:textSize="@dimen/material_text_body1" />
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
