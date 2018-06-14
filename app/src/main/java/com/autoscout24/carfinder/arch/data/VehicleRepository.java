@@ -66,9 +66,14 @@ public class VehicleRepository {
         //Check for intialization happens once per lifetime of app
         if(mIntialised) return;
         mIntialised = true;
-
-        startFetchVehicleListService();
+        
+        mExecutors.diskIO().execute(() -> {
+            if(isFetchRequired()) {
+                startFetchVehicleListService();
+            }
+        });
     }
+
     //Delete Old data
 
     //Check if a fetch is needed
