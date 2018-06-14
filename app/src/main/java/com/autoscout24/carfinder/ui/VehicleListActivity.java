@@ -2,13 +2,11 @@ package com.autoscout24.carfinder.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.res.Configuration;
-import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -42,24 +40,23 @@ public class VehicleListActivity extends AppCompatActivity {
 
         mVehicleListAdaptor = new VehicleListAdaptor(this);
         mVehicleRecyclerView.setAdapter(mVehicleListAdaptor);
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mVehicleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        }else{
-            StaggeredGridLayoutManager staggeredGridVertical=new
+        } else {
+            StaggeredGridLayoutManager staggeredGridVertical = new
                     StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
             mVehicleRecyclerView.setLayoutManager(staggeredGridVertical);
         }
-        
+
         VehicleViewModelFactory factory = InjectorUtils.provideVehicleViewModelFactory(this.getApplicationContext());
 
         mViewModel = ViewModelProviders.of(this, factory).get(VehicleListViewModel.class);
-        
+
         //Create obeservation for changes in Vehicles
         mViewModel.getVehicles().observe(this, vehicleEntries -> {
             //Any changes update to UI
-            if(vehicleEntries != null) bindVehicleListToUI(vehicleEntries);
+            if (vehicleEntries != null) bindVehicleListToUI(vehicleEntries);
         });
-
     }
 
     private void bindVehicleListToUI(List<VehicleEntry> vehicleList) {

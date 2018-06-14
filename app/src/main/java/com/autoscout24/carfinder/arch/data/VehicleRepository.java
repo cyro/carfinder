@@ -66,7 +66,7 @@ public class VehicleRepository {
         //Check for intialization happens once per lifetime of app
         if(mIntialised) return;
         mIntialised = true;
-        
+
         mExecutors.diskIO().execute(() -> {
             if(isFetchRequired()) {
                 startFetchVehicleListService();
@@ -79,11 +79,10 @@ public class VehicleRepository {
     //Check if a fetch is needed
     private boolean isFetchRequired() {
         int count = mVehicleDao.countAllVehicles();
-        return (count < 0);
+        return (count <= 0);
     }
 
     //Start service
-
     private void startFetchVehicleListService() {
         mVehicleDataSource.startFetchVehicleListService();
     }
