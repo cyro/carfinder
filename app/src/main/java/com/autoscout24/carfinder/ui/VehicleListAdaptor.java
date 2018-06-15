@@ -30,8 +30,8 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
 
     private static int POSITION_OF_ADVERTISMENTS = 3;
 
-    private static final int VIEW_VEHICLE = 1;
-    private static final int VIEW_ADVERTISEMENT = 2;
+    private static final int VIEW_VEHICLE = 0;
+    private static final int VIEW_ADVERTISEMENT = 1;
     private static final int VIEW_UNKNOWN_TYPE = -1;
 
     private List<VehicleAdvertisementWrapper> vehicleAdvertisementList;
@@ -48,10 +48,11 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
         if (viewType == VIEW_VEHICLE) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.vehicle_card_view, parent, false);
             return new VehicleListViewHolder(itemView);
-        } else {
+        } else if (viewType == VIEW_ADVERTISEMENT) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.advertisment_card_view, parent, false);
             return new AdvertisementViewHolder(itemView);
         }
+        else return null;
     }
 
     @Override
@@ -63,18 +64,19 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
             return VIEW_ADVERTISEMENT;
         } else {
             // Should never get here, but ,always good to code defensive
-            Log.e(LOG_TAG, "HEY Coder... you have added a new Item view type that I");
+            Log.e(LOG_TAG, "HEY Coder... you have added a new Item view type that isnt available");
             return VIEW_UNKNOWN_TYPE;
         }
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
+        holder.setIsRecyclable(true);
         VehicleAdvertisementWrapper vehicleAdvertisementWrapper = vehicleAdvertisementList.get(position);
 
-        if (vehicleAdvertisementWrapper.isVehicle()) {
+        if (vehicleAdvertisementWrapper.isVehicle() ) {
+            Log.d(LOG_TAG,"vehicleAdvertisementWrapper.isVehicle() "+ position);
             VehicleListViewHolder viewHolder = (VehicleListViewHolder) holder;
 
             VehicleEntry vehicleEntry = vehicleAdvertisementWrapper.getVehicleEntry();
@@ -103,6 +105,7 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
             }
 
         } else if (vehicleAdvertisementWrapper.isAdvertisement()) {
+            Log.d(LOG_TAG,"vehicleAdvertisementWrapper.isAdvertisement() "+ position);
             AdvertisementViewHolder viewHolder = (AdvertisementViewHolder) holder;
             viewHolder.advertismentImageView.setBackgroundResource(R.drawable.animate_advertisments);
             AnimationDrawable animationDrawable = (AnimationDrawable) viewHolder.advertismentImageView.getBackground();
@@ -121,16 +124,18 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
             vehicleAdvertisementList.add(new VehicleAdvertisementWrapper(vehicle));
         }
 
-        int numberAdvertisements = MathUtils.mod(vehicleEntryList.size(), POSITION_OF_ADVERTISMENTS);
-
-        int count = 1;
-        while (numberAdvertisements > 0) {
-            if (count % POSITION_OF_ADVERTISMENTS == 0) {
-                vehicleAdvertisementList.add(count - 1, new VehicleAdvertisementWrapper("Advertisement"));
-                numberAdvertisements--;
+        for(int i = 0 ;i< vehicleAdvertisementList.size();i++) {
+            if(i % POSITION_OF_ADVERTISMENTS == 0) {
+                vehicleAdvertisementList.add(i, new VehicleAdvertisementWrapper("Advertisement"));
+                Log.d(LOG_TAG,"Advertisment");
             }
-            count++;
+            else {
+                Log.d(LOG_TAG,"Vehicle");
+            }
         }
+        //Adjusting for zero based index, because 3%0 =0
+        if(vehicleAdvertisementList.size()>0)
+        vehicleAdvertisementList.remove(0);
         notifyDataSetChanged();
     }
 

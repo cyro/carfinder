@@ -21,7 +21,7 @@
 
             <RelativeLayout android:id="@+id/vehicleImagesLayout"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="180dp"
                 android:orientation="horizontal">
 
                 <android.support.v4.view.ViewPager

@@ -38,6 +38,7 @@ public class VehicleNetworkDataSource {
     private final MutableLiveData<VehicleEntry[]> mDownloadedVehicle;
 
     public static final String BASE_URL = "http://private-fe87c-simpleclassifieds.apiary-mock.com";
+    //public static final String BASE_URL = "http://5b22e0afb968350014dd0043.mockapi.io/vehicles/";
 
     private static Retrofit retrofit = null;
 
