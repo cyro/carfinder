@@ -3,7 +3,9 @@ package com.autoscout24.carfinder.arch.data.network;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.content.Intent;
+import android.net.NetworkInfo;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.autoscout24.carfinder.arch.core.AppExecutors;
 import com.autoscout24.carfinder.arch.data.database.VehicleEntry;
@@ -71,29 +73,33 @@ public class VehicleNetworkDataSource {
 
     public void fetchVehicles() {
         Log.d(LOG_TAG,"Fetching vehicles");
-        mExecutors.networkIO().execute(() -> {
-            try {
-                Call<VehicleEntry[]> call = getRetrofitClient().create(VehicleWebservice.class).getAllVehicles();
-                call.enqueue(new Callback<VehicleEntry[]>() {
-                    @Override
-                    public void onResponse(Call<VehicleEntry[]> call, Response<VehicleEntry[]> response) {
-                        Log.d(LOG_TAG,response.body().toString());
-                        mDownloadedVehicle.postValue(response.body());
-                    }
+        if(NetworkUtils.isNetworkAvailable(mContext)) {
+            mExecutors.networkIO().execute(() -> {
+                try {
+                    Call<VehicleEntry[]> call = getRetrofitClient().create(VehicleWebservice.class).getAllVehicles();
+                    call.enqueue(new Callback<VehicleEntry[]>() {
+                        @Override
+                        public void onResponse(Call<VehicleEntry[]> call, Response<VehicleEntry[]> response) {
+                            Log.d(LOG_TAG, response.body().toString());
+                            mDownloadedVehicle.postValue(response.body());
+                        }
 
-                    @Override
-                    public void onFailure(Call<VehicleEntry[]> call, Throwable t) {
-                        //Something went wrong
-                        Log.d(LOG_TAG,"Something went wrong with your vehicle data call: "+t.getLocalizedMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<VehicleEntry[]> call, Throwable t) {
+                            //Something went wrong
+                            Log.d(LOG_TAG, "Something went wrong with your vehicle data call: " + t.getLocalizedMessage());
+                        }
+                    });
 
-            } catch (Exception e) {
-                //Network issue
-                e.printStackTrace();
-            }
+                } catch (Exception e) {
+                    //Network issue
+                    e.printStackTrace();
+                }
 
-        });
+            });
+        }else {
+            Toast.makeText(mContext,"No internet connection available",Toast.LENGTH_LONG).show();
+        }
     }
     public static Retrofit getRetrofitClient() {
         if (retrofit == null) {
