@@ -71,6 +71,7 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
         holder.setIsRecyclable(true);
         VehicleAdvertisementWrapper vehicleAdvertisementWrapper = vehicleAdvertisementList.get(position);
 
