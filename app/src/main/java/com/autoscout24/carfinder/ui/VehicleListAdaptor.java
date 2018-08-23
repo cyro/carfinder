@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.autoscout24.carfinder.R;
 import com.autoscout24.carfinder.arch.data.database.VehicleEntry;
-import com.autoscout24.carfinder.ui.utils.MathUtils;
 import com.autoscout24.carfinder.ui.utils.StringUtils;
 import com.autoscout24.carfinder.ui.utils.VehicleViewPagerAdaptor;
 
