@@ -79,14 +79,14 @@ public class VehicleListAdaptor extends RecyclerView.Adapter {
 
             VehicleEntry vehicleEntry = vehicleAdvertisementWrapper.getVehicleEntry();
             viewHolder.vehicleFuelTypeTextView.setText(StringUtils.isNullorEmpty(vehicleEntry.getFuel()));
-            viewHolder.vehicleMakeModelTextView.setText(StringUtils.isNullorEmpty(vehicleEntry.getMakeAndModel()));
-            viewHolder.vehiclePriceTextView.setText(StringUtils.getAttributtedCurrency(vehicleEntry.getPrice()));
-            viewHolder.vehicleMileageTextView.setText(StringUtils.getAttributedMileage(vehicleEntry.getMileage()));
+            viewHolder.vehicleMakeModelTextView.setText(StringUtils.INSTANCE.isNullorEmpty(vehicleEntry.getMakeAndModel()));
+            viewHolder.vehiclePriceTextView.setText(StringUtils.INSTANCE.getAttributtedCurrency(vehicleEntry.getPrice()));
+            viewHolder.vehicleMileageTextView.setText(StringUtils.INSTANCE.getAttributedMileage(vehicleEntry.getMileage()));
             viewHolder.vehicleColorTextView.setText(StringUtils.isNullorEmpty(vehicleEntry.getColor()));
-            viewHolder.vehicleSellerCityTextView.setText(vehicleEntry.getSeller() != null ? StringUtils.isNullorEmpty(vehicleEntry.getSeller().getCity()) : "N/A");
-            viewHolder.vehicleSellerTellTextView.setText(vehicleEntry.getSeller() != null ? StringUtils.isNullorEmpty(vehicleEntry.getSeller().getPhone()) : "N/A");
-            viewHolder.vehicleSellerTextView.setText(vehicleEntry.getSeller() != null ? StringUtils.isNullorEmpty(vehicleEntry.getSeller().getType()) : "N/A");
-            viewHolder.vehicleDescriptionTextView.setText(StringUtils.isNullorEmpty(vehicleEntry.getDescription()));
+            viewHolder.vehicleSellerCityTextView.setText(vehicleEntry.getSeller() != null ? StringUtils.INSTANCE.isNullorEmpty(vehicleEntry.getSeller().getCity()) : "N/A");
+            viewHolder.vehicleSellerTellTextView.setText(vehicleEntry.getSeller() != null ? StringUtils.INSTANCE.isNullorEmpty(vehicleEntry.getSeller().getPhone()) : "N/A");
+            viewHolder.vehicleSellerTextView.setText(vehicleEntry.getSeller() != null ? StringUtils.INSTANCE.isNullorEmpty(vehicleEntry.getSeller().getType()) : "N/A");
+            viewHolder.vehicleDescriptionTextView.setText(StringUtils.INSTANCE.isNullorEmpty(vehicleEntry.getDescription()));
 
             if (vehicleEntry.getImages() != null && !vehicleEntry.getImages().isEmpty()) {
                 VehicleViewPagerAdaptor pagerAdaptor = new VehicleViewPagerAdaptor(vehicleEntry.getImages(), mContext);
