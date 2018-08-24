@@ -22,4 +22,4 @@ class VehicleAdvertisementWrapper {
     constructor(advertisement: String) {
         this.advertisement = advertisement
     }
-} 
+}
