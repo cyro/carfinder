@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.autoscout24.carfinder">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
 
-    <service
-        android:name=".arch.data.network.VehicleSyncIntentService"
-        android:exported="false"/>
+        <service
+            android:name=".arch.data.network.VehicleSyncIntentService"
+            android:exported="false" />
     </application>
 </manifest>
