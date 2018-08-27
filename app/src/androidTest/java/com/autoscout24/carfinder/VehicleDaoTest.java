@@ -12,7 +12,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.autoscout24.carfinder.arch.data.database.Seller;
 import com.autoscout24.carfinder.arch.data.database.VehicleDatabase;
 import com.autoscout24.carfinder.arch.data.database.VehicleEntry;
 import java.util.ArrayList;

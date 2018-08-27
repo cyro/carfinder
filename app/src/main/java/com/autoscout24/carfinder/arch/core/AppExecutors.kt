@@ -19,9 +19,6 @@ class AppExecutors private constructor(private val diskIO: Executor, private val
         return networkIO
     }
 
-    // For Singleton instantiation
-
-
     companion object {
         private val LOCK = Any()
         private var sInstance: AppExecutors? = null
