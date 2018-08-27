@@ -4,21 +4,22 @@ import android.content.Context
 import com.autoscout24.carfinder.arch.data.VehicleRepository
 import com.autoscout24.carfinder.arch.data.database.VehicleDatabase
 import com.autoscout24.carfinder.arch.data.network.VehicleNetworkDataSource
+import com.autoscout24.carfinder.arch.data.network.VehicleNetworkDataSource.getInstance
 import com.autoscout24.carfinder.ui.VehicleViewModelFactory
 
 object InjectorUtils {
     @JvmStatic
     fun provideRepository(context: Context): VehicleRepository {
         val database = VehicleDatabase.getInstance(context)
-        val executors = AppExecutors.getInstance()
-        val networkDataSource = VehicleNetworkDataSource.getInstance(context, executors)
+        val executors = AppExecutors.getInstance
+        val networkDataSource = getInstance(context, executors)
         return VehicleRepository.getInstance(database.vehicleDao(), networkDataSource, executors)
     }
 
     @JvmStatic
     fun provideNetworkDataSource(context: Context): VehicleNetworkDataSource {
-        val executors = AppExecutors.getInstance()
-        return VehicleNetworkDataSource.getInstance(context, executors)
+        val executors = AppExecutors.getInstance
+        return getInstance(context, executors)
     }
 
     @JvmStatic
