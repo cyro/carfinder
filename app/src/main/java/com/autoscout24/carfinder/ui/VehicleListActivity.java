@@ -35,6 +35,7 @@ public class VehicleListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        InjectorUtils.setContext(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
