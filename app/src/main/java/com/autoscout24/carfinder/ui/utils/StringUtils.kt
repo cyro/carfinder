@@ -7,7 +7,7 @@ object StringUtils {
     fun isNullorEmpty(value: String): String {
         var result = ""
 
-        when((value != null && value.isNotBlank())){
+        when((value != null && value.isNotEmpty())){
             true -> result = value
             false-> result = "N/A"
         }
