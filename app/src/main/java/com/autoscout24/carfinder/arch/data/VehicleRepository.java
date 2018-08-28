@@ -31,7 +31,7 @@ public class VehicleRepository {
         this.mVehicleDataSource = mVehicleDataSource;
         this.mExecutors = mExecutors;
 
-        LiveData<VehicleEntry[]> networkData = mVehicleDataSource.getLatestsVehicles();
+        LiveData<VehicleEntry[]> networkData = mVehicleDataSource.getLatestVehicles();
         networkData.observeForever( newVehilcesFromNetwork -> {
             mExecutors.diskIO().execute(() -> {
                 mVehicleDao.bulkInsert(newVehilcesFromNetwork);

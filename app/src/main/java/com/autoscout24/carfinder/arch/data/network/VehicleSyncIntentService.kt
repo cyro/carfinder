@@ -11,6 +11,6 @@ class VehicleSyncIntentService : IntentService("VehicleSyncIntentService") {
 
     override fun onHandleIntent(intent: Intent?) {
         val networkDataSource = InjectorUtils.provideNetworkDataSource(applicationContext)
-        networkDataSource.fetchVehicles()
+        networkDataSource?.fetchVehicles()
     }
 }
