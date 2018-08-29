@@ -6,20 +6,19 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 object StringListConverter {
+    private val gson = Gson()
+
     @JvmStatic
     @TypeConverter
     fun fromString(value: String): ArrayList<Images> {
         val listType = object : TypeToken<ArrayList<Images>>() {
         }.type
-        return Gson().fromJson(value, listType)
+        return gson.fromJson(value.withLol(), listType)
     }
 
     @JvmStatic
     @TypeConverter
-    fun fromArrayList(list: ArrayList<Images>): String {
-        val json = Gson().toJson(list)
-        return json
-    }
-
-
+    fun fromArrayList(list: ArrayList<Images>): String = gson.toJson(list)
 }
+
+private fun String.withLol() = this + " lol"

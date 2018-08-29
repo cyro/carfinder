@@ -35,12 +35,12 @@ class VehicleListActivity : AppCompatActivity() {
         vehicleListAdaptor = VehicleListAdaptor(this)
         vehicleRecyclerView.adapter = vehicleListAdaptor
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            vehicleRecyclerView.layoutManager = LinearLayoutManager(this)
-        } else {
-            val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            vehicleRecyclerView.layoutManager = staggeredGridLayoutManager
-        }
+        vehicleRecyclerView.layoutManager =
+                if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    LinearLayoutManager(this)
+                } else {
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                }
 
         val factory = InjectorUtils.provideVehicleViewModelFactory(this.applicationContext)
         viewModel = ViewModelProviders.of(this, factory).get(VehicleListViewModel::class.java)

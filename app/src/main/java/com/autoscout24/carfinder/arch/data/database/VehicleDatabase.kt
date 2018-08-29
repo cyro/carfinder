@@ -9,7 +9,7 @@ import android.util.Log
 
 import com.autoscout24.carfinder.arch.data.database.converter.StringListConverter
 
-@Database(entities = arrayOf(VehicleEntry::class), version = 1)
+@Database(entities = [VehicleEntry::class], version = 1)
 @TypeConverters(StringListConverter::class)
 abstract class VehicleDatabase : RoomDatabase() {
 
@@ -19,7 +19,7 @@ abstract class VehicleDatabase : RoomDatabase() {
 
         private val LOG_TAG = VehicleDatabase::class.java.simpleName
 
-        private val DATABASE_NAME = "vehicles"
+        private const val DATABASE_NAME = "vehicles"
 
         fun getInstance(context: Context): VehicleDatabase =
                 Room.databaseBuilder(context.applicationContext,

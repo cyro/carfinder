@@ -15,11 +15,7 @@ import java.util.concurrent.Executors
 
 class VehicleNetworkDataSource private constructor(private val mContext: Context, private val mExecutors: AppExecutors?) {
 
-    var latestVehicles: MutableLiveData<Array<VehicleEntry>>
-
-    init {
-        latestVehicles = MutableLiveData()
-    }
+    var latestVehicles: MutableLiveData<Array<VehicleEntry>> = MutableLiveData()
 
 
     fun startFetchVehicleListService() {
@@ -30,7 +26,7 @@ class VehicleNetworkDataSource private constructor(private val mContext: Context
 
     fun fetchVehicles() {
         Log.d(LOG_TAG, "Fetching vehicles")
-        mExecutors?.networkIO()?.execute {
+        mExecutors?.networkIO?.execute {
             try {
                 val call = retrofitClient?.create(VehicleWebservice::class.java)?.getAllVehicles()
                 call?.enqueue(object : Callback<Array<VehicleEntry>> {

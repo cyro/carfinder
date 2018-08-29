@@ -24,10 +24,12 @@ class VehicleViewPagerAdaptor constructor(private val images: ArrayList<Images>,
         imageView = imageLayout.findViewById(R.id.vehicleImage)
         textView = imageLayout.findViewById(R.id.numberOfImagesTextView)
         textView?.let { textView?.setText(mContext.getString(R.string.numberIndicator, position + 1, images.size)) }
-        val requestOptions = RequestOptions() as RequestOptions
-        requestOptions.placeholder(R.drawable.placeholder_car)
-        requestOptions.error(R.drawable.placeholder_error)
-        requestOptions.centerCrop()
+
+        val requestOptions = RequestOptions().apply{
+            placeholder(R.drawable.placeholder_car)
+            error(R.drawable.placeholder_error)
+            centerCrop()
+        }
 
         Glide.with(mContext)
                 .setDefaultRequestOptions(requestOptions)
@@ -39,9 +41,7 @@ class VehicleViewPagerAdaptor constructor(private val images: ArrayList<Images>,
     }
 
     //View Pager Methods
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view === `object`
-    }
+    override fun isViewFromObject(view: View, `object`: Any): Boolean = view == `object`
 
     override fun getCount(): Int {
         return images.size
